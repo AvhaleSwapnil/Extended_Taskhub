@@ -23,7 +23,7 @@ function cn(...inputs) {
 
 export default function Sidebar() {
     const pathname = usePathname();
-    const { setIsModalOpen } = useTasks();
+    const { setIsModalOpen, companies, selectedCompany, setSelectedCompany } = useTasks();
 
     const menuItems = [
         { name: "All Tasks", icon: LayoutGrid, href: "/" },
@@ -67,6 +67,45 @@ export default function Sidebar() {
                         </Link>
                     );
                 })}
+
+                <div className="pt-8 pb-4">
+                    <h2 className="px-4 text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-4">Companies</h2>
+                    <div className="space-y-1">
+                        <button
+                            onClick={() => setSelectedCompany("All")}
+                            className={cn(
+                                "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all",
+                                selectedCompany === "All"
+                                    ? "bg-indigo-50 text-primary"
+                                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                            )}
+                        >
+                            <div className={cn(
+                                "w-2 h-2 rounded-full",
+                                selectedCompany === "All" ? "bg-primary" : "bg-slate-300"
+                            )} />
+                            All Companies
+                        </button>
+                        {companies.map((company) => (
+                            <button
+                                key={company}
+                                onClick={() => setSelectedCompany(company)}
+                                className={cn(
+                                    "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all",
+                                    selectedCompany === company
+                                        ? "bg-indigo-50 text-primary"
+                                        : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                                )}
+                            >
+                                <div className={cn(
+                                    "w-2 h-2 rounded-full opacity-0 transition-opacity",
+                                    selectedCompany === company && "opacity-100 bg-primary"
+                                )} />
+                                {company}
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </nav>
 
             {/* Bottom Actions */}

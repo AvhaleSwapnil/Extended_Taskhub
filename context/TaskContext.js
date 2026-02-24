@@ -4,6 +4,14 @@ import { createContext, useContext, useState, useMemo } from "react";
 
 const TaskContext = createContext();
 
+const COMPANIES = [
+    "Sage Healthy",
+    "HubOne Systems",
+    "Gentyx",
+    "HoldCos",
+    "Sage Healthy Global"
+];
+
 const INITIAL_TASKS = [
     {
         id: 1,
@@ -14,7 +22,8 @@ const INITIAL_TASKS = [
         priority: "High",
         category: "Reporting",
         status: "In Progress",
-        recurrence: "Monthly"
+        recurrence: "Monthly",
+        company: "Sage Healthy"
     },
     {
         id: 2,
@@ -25,7 +34,8 @@ const INITIAL_TASKS = [
         priority: "Medium",
         category: "Accounts Payable",
         status: "Todo",
-        recurrence: "Weekly"
+        recurrence: "Weekly",
+        company: "HubOne Systems"
     },
     {
         id: 3,
@@ -36,13 +46,15 @@ const INITIAL_TASKS = [
         priority: "High",
         category: "Reconciliation",
         status: "Completed",
-        recurrence: "One Time"
+        recurrence: "One Time",
+        company: "Gentyx"
     }
 ];
 
 export function TaskProvider({ children }) {
     const [tasks, setTasks] = useState(INITIAL_TASKS);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedCompany, setSelectedCompany] = useState("All");
 
     const addTask = (newTask) => {
         setTasks(prev => [{ ...newTask, id: Date.now() }, ...prev]);
@@ -61,6 +73,9 @@ export function TaskProvider({ children }) {
 
     const value = {
         tasks,
+        companies: COMPANIES,
+        selectedCompany,
+        setSelectedCompany,
         addTask,
         toggleTaskStatus,
         isModalOpen,

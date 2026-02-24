@@ -15,19 +15,20 @@ import { useTasks } from "@/context/TaskContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
-  const { tasks, toggleTaskStatus, setIsModalOpen } = useTasks();
+  const { tasks, toggleTaskStatus, setIsModalOpen, selectedCompany } = useTasks();
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
 
   const stats = useMemo(() => {
+    const tasksForStats = tasks.filter(task => selectedCompany === "All" || task.company === selectedCompany);
     return [
-      { label: "Total Tasks", value: tasks.length, color: "text-slate-900", bg: "bg-white" },
-      { label: "Todo", value: tasks.filter(t => t.status === "Todo").length, color: "text-blue-600", bg: "bg-blue-50" },
-      { label: "In Progress", value: tasks.filter(t => t.status === "In Progress").length, color: "text-orange-600", bg: "bg-orange-50" },
-      { label: "Completed", value: tasks.filter(t => t.status === "Completed").length, color: "text-emerald-600", bg: "bg-emerald-50" },
-      { label: "Recurring", value: tasks.filter(t => t.recurrence && t.recurrence !== "One Time").length, color: "text-indigo-600", bg: "bg-indigo-50" },
+      { label: "Total Tasks", value: tasksForStats.length, color: "text-slate-900", bg: "bg-white" },
+      { label: "Todo", value: tasksForStats.filter(t => t.status === "Todo").length, color: "text-blue-600", bg: "bg-blue-50" },
+      { label: "In Progress", value: tasksForStats.filter(t => t.status === "In Progress").length, color: "text-orange-600", bg: "bg-orange-50" },
+      { label: "Completed", value: tasksForStats.filter(t => t.status === "Completed").length, color: "text-emerald-600", bg: "bg-emerald-50" },
+      { label: "Recurring", value: tasksForStats.filter(t => t.recurrence && t.recurrence !== "One Time").length, color: "text-indigo-600", bg: "bg-indigo-50" },
     ];
-  }, [tasks]);
+  }, [tasks, selectedCompany]);
 
   const filteredTasks = useMemo(() => {
     return tasks.filter(task => {
@@ -35,9 +36,11 @@ export default function Home() {
         task.description.toLowerCase().includes(search.toLowerCase());
       const matchesFilter = filter === "All" ||
         (filter === "Recurring" ? (task.recurrence && task.recurrence !== "One Time") : task.status === filter);
-      return matchesSearch && matchesFilter;
+      const matchesCompany = selectedCompany === "All" || task.company === selectedCompany;
+
+      return matchesSearch && matchesFilter && matchesCompany;
     });
-  }, [tasks, search, filter]);
+  }, [tasks, search, filter, selectedCompany]);
 
   return (
     <motion.div

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { X, Plus, Calendar, User, Tag, AlertCircle } from "lucide-react";
+import { X, Plus, Calendar, User, Tag, AlertCircle, Briefcase } from "lucide-react";
 import { useTasks } from "@/context/TaskContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function TaskModal() {
-    const { isModalOpen, setIsModalOpen, addTask } = useTasks();
+    const { isModalOpen, setIsModalOpen, addTask, companies } = useTasks();
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -15,7 +15,8 @@ export default function TaskModal() {
         priority: "Medium",
         category: "General",
         status: "Todo",
-        recurrence: "One Time"
+        recurrence: "One Time",
+        company: companies?.[0] || "Sage Healthy"
     });
 
     const handleSubmit = (e) => {
@@ -30,7 +31,8 @@ export default function TaskModal() {
             priority: "Medium",
             category: "General",
             status: "Todo",
-            recurrence: "One Time"
+            recurrence: "One Time",
+            company: companies?.[0] || "Sage Healthy"
         });
     };
 
@@ -151,6 +153,24 @@ export default function TaskModal() {
                                             <option>Tax</option>
                                             <option>Compliance</option>
                                             <option>General</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Company</label>
+                                    <div className="relative">
+                                        <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={16} />
+                                        <select
+                                            value={formData.company}
+                                            onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                                            className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-xl focus:ring-2 focus:ring-indigo-100 focus:border-primary outline-none appearance-none transition-all font-medium text-slate-700"
+                                        >
+                                            {companies.map(company => (
+                                                <option key={company}>{company}</option>
+                                            ))}
                                         </select>
                                     </div>
                                 </div>
