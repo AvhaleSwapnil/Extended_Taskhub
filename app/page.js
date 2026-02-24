@@ -47,7 +47,7 @@ export default function Home() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
-      className="max-w-6xl mx-auto space-y-10"
+      className="max-w-6xl mx-auto space-y-6 sm:space-y-10"
     >
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
@@ -77,14 +77,14 @@ export default function Home() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
         {stats.map((stat, idx) => (
           <motion.div
             key={stat.label}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.1 }}
-            className="stat-card"
+            className="stat-card min-w-0"
           >
             <p className="text-slate-400 font-bold text-[10px] uppercase tracking-wider">{stat.label}</p>
             <div className="mt-2 flex items-end justify-between">
@@ -104,7 +104,7 @@ export default function Home() {
 
       {/* Filters & Actions */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 no-scrollbar flex-nowrap">
+        <div className="w-full flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 no-scrollbar flex-nowrap">
           {["All", "Todo", "In Progress", "Completed", "Recurring"].map((f) => (
             <button
               key={f}
@@ -141,7 +141,7 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
-              className="stat-card flex items-center justify-between group cursor-pointer hover:border-indigo-100"
+              className="stat-card flex items-center justify-between group cursor-pointer hover:border-indigo-100 min-w-0 font-medium"
             >
               <div className="flex items-start gap-4">
                 <button
@@ -164,20 +164,20 @@ export default function Home() {
                     )}
                   </AnimatePresence>
                 </button>
-                <div>
-                  <h3 className={`text-lg font-bold text-slate-800 line-clamp-1 transition-all ${task.status === 'Completed' ? 'line-through text-slate-400 opacity-60' : ''
+                <div className="min-w-0 flex-1">
+                  <h3 className={`text-base sm:text-lg font-bold text-slate-800 line-clamp-1 transition-all ${task.status === 'Completed' ? 'line-through text-slate-400 opacity-60' : ''
                     }`}>
                     {task.title}
                   </h3>
-                  <p className="text-slate-500 text-sm mt-0.5 line-clamp-1">{task.description}</p>
-                  <div className="mt-3 flex flex-wrap items-center gap-3 sm:gap-6">
-                    <div className="flex items-center gap-1.5 text-slate-400">
-                      <User size={14} strokeWidth={2.5} />
-                      <span className="text-[10px] sm:text-xs font-bold">{task.owner}</span>
+                  <p className="text-slate-500 text-xs sm:text-sm mt-0.5 line-clamp-1">{task.description}</p>
+                  <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 sm:gap-6 min-w-0">
+                    <div className="flex items-center gap-1.5 text-slate-400 min-w-0">
+                      <User size={14} strokeWidth={2.5} className="flex-shrink-0" />
+                      <span className="text-[10px] sm:text-xs font-bold truncate max-w-[100px]">{task.owner}</span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-slate-400">
-                      <Clock size={14} strokeWidth={2.5} />
-                      <span className="text-[10px] sm:text-xs font-bold">{task.date}</span>
+                    <div className="flex items-center gap-1.5 text-slate-400 min-w-0">
+                      <Clock size={14} strokeWidth={2.5} className="flex-shrink-0" />
+                      <span className="text-[10px] sm:text-xs font-bold truncate">{task.date}</span>
                     </div>
                     <div className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[9px] sm:text-[10px] font-bold uppercase tracking-wide flex items-center gap-1.5 ${task.priority === 'High' ? 'bg-rose-50 text-rose-600' :
                       task.priority === 'Medium' ? 'bg-amber-50 text-amber-600' : 'bg-emerald-50 text-emerald-600'

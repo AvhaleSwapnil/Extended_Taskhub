@@ -54,7 +54,7 @@ export default function TaskModal() {
                         className="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden border border-slate-100 flex flex-col max-h-[90vh] relative z-10"
                     >
                         {/* Header */}
-                        <div className="p-6 sm:p-8 border-b border-slate-50 flex items-center justify-between bg-white sticky top-0">
+                        <div className="p-5 sm:p-8 border-b border-slate-50 flex items-center justify-between bg-white sticky top-0">
                             <div>
                                 <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Create New Task</h3>
                                 <p className="text-slate-400 text-xs sm:text-sm font-medium mt-1">Add a new task to your finance dashboard</p>
@@ -68,7 +68,7 @@ export default function TaskModal() {
                         </div>
 
                         {/* Form Body */}
-                        <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6 overflow-y-auto">
+                        <form onSubmit={handleSubmit} className="p-5 sm:p-8 space-y-6 overflow-y-auto">
                             <div className="space-y-2">
                                 <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Task Title</label>
                                 <input
@@ -177,7 +177,7 @@ export default function TaskModal() {
 
                                 <div className="space-y-2">
                                     <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Recurrence</label>
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                    <div className="grid grid-cols-1 min-[400px]:grid-cols-3 gap-2">
                                         {["One Time", "Weekly", "Monthly"].map((type) => (
                                             <button
                                                 key={type}
@@ -197,7 +197,7 @@ export default function TaskModal() {
                         </form>
 
                         {/* Footer */}
-                        <div className="p-6 sm:p-8 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-end gap-3 sticky bottom-0">
+                        <div className="p-5 sm:p-8 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-end gap-3 sticky bottom-0">
                             <button
                                 type="button"
                                 onClick={() => setIsModalOpen(false)}

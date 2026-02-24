@@ -63,7 +63,7 @@ export default function TeamPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="max-w-6xl mx-auto space-y-10"
+            className="max-w-6xl mx-auto space-y-6 sm:space-y-10"
         >
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
@@ -103,19 +103,19 @@ export default function TeamPage() {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ delay: idx * 0.05 }}
-                            className="stat-card group"
+                            className="stat-card group min-w-0 !p-4 sm:!p-6"
                         >
-                            <div className="flex items-start justify-between mb-6">
-                                <div className="flex items-center gap-4">
+                            <div className="flex items-start justify-between mb-6 gap-2">
+                                <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                                     <motion.div
                                         whileHover={{ scale: 1.1 }}
-                                        className="h-12 w-12 rounded-full bg-indigo-50 border-2 border-white flex items-center justify-center text-primary font-bold shadow-sm shadow-indigo-100 uppercase"
+                                        className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-indigo-50 border-2 border-white flex items-center justify-center text-primary font-bold shadow-sm shadow-indigo-100 uppercase flex-shrink-0"
                                     >
                                         {member.initials}
                                     </motion.div>
-                                    <div>
-                                        <h3 className="font-bold text-slate-800 leading-tight">{member.name}</h3>
-                                        <p className="text-xs text-slate-400 font-bold mt-0.5">{member.role}</p>
+                                    <div className="min-w-0">
+                                        <h3 className="font-bold text-slate-800 leading-tight truncate">{member.name}</h3>
+                                        <p className="text-xs text-slate-400 font-bold mt-0.5 truncate">{member.role}</p>
                                     </div>
                                 </div>
                                 <button className="p-1.5 text-slate-300 hover:text-slate-600 hover:bg-slate-50 rounded-lg transition-all">
@@ -124,13 +124,13 @@ export default function TeamPage() {
                             </div>
 
                             <div className="space-y-3 mb-8">
-                                <div className="flex items-center gap-2.5 text-slate-500 hover:text-primary transition-colors cursor-pointer group/link">
-                                    <Mail size={14} strokeWidth={2.5} className="text-slate-300 group-hover/link:text-primary transition-colors" />
-                                    <span className="text-xs font-bold">{member.email}</span>
+                                <div className="flex items-center gap-2.5 text-slate-500 hover:text-primary transition-colors cursor-pointer group/link min-w-0">
+                                    <Mail size={14} strokeWidth={2.5} className="flex-shrink-0 text-slate-300 group-hover/link:text-primary transition-colors" />
+                                    <span className="text-xs font-bold truncate break-all">{member.email}</span>
                                 </div>
-                                <div className="flex items-center gap-2.5 text-slate-500 hover:text-primary transition-colors cursor-pointer group/link">
-                                    <Phone size={14} strokeWidth={2.5} className="text-slate-300 group-hover/link:text-primary transition-colors" />
-                                    <span className="text-xs font-bold">{member.phone}</span>
+                                <div className="flex items-center gap-2.5 text-slate-500 hover:text-primary transition-colors cursor-pointer group/link min-w-0">
+                                    <Phone size={14} strokeWidth={2.5} className="flex-shrink-0 text-slate-300 group-hover/link:text-primary transition-colors" />
+                                    <span className="text-xs font-bold truncate">{member.phone}</span>
                                 </div>
                             </div>
 

@@ -82,7 +82,7 @@ export default function CalendarPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="max-w-6xl mx-auto space-y-10"
+            className="max-w-6xl mx-auto space-y-6 sm:space-y-10"
         >
             {/* Header */}
             <motion.div
@@ -99,9 +99,9 @@ export default function CalendarPage() {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="lg:col-span-8 stat-card !p-4 sm:!p-8"
+                    className="lg:col-span-8 stat-card !p-3 sm:!p-8 overflow-hidden"
                 >
-                    <div className="flex items-center justify-between mb-10">
+                    <div className="flex flex-col min-[400px]:flex-row min-[400px]:items-center justify-between gap-6 mb-10">
                         <AnimatePresence mode="wait">
                             <motion.h3
                                 key={monthName + year}
@@ -114,7 +114,7 @@ export default function CalendarPage() {
                             </motion.h3>
                         </AnimatePresence>
                         <div className="flex items-center gap-4">
-                            <div className="flex items-center bg-slate-50 border border-slate-100 rounded-lg p-1">
+                            <div className="flex items-center bg-slate-50 border border-slate-100 rounded-lg p-1 w-fit">
                                 <button
                                     onClick={() => changeMonth(-1)}
                                     className="p-1.5 hover:bg-white hover:shadow-sm rounded-md transition-all text-slate-400 active:scale-90"
@@ -151,14 +151,14 @@ export default function CalendarPage() {
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.2 }}
-                                className="col-span-7 grid grid-cols-7"
+                                className="col-span-7 grid grid-cols-7 min-w-0"
                             >
                                 {calendarDays.map((date, idx) => (
                                     <div key={idx} className="relative group cursor-pointer pb-4">
                                         <motion.div
                                             whileHover={{ scale: 1.1 }}
                                             className={`
-                        mx-auto h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center rounded-xl text-sm font-bold transition-all
+                        mx-auto h-8 w-8 min-[400px]:h-10 min-[400px]:w-10 sm:h-12 sm:w-12 flex items-center justify-center rounded-xl text-xs sm:text-sm font-bold transition-all
                         ${date.isToday ? 'bg-primary text-white shadow-lg shadow-indigo-100 scale-110' :
                                                     date.isCurrentMonth ? 'text-slate-700 hover:bg-indigo-50 hover:text-primary' : 'text-slate-300'}
                       `}
@@ -166,7 +166,7 @@ export default function CalendarPage() {
                                             {date.day}
                                         </motion.div>
                                         {date.hasEvent && !date.isToday && (
-                                            <div className="absolute bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full group-hover:scale-150 transition-transform"></div>
+                                            <div className="absolute bottom-4 min-[400px]:bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full group-hover:scale-150 transition-transform"></div>
                                         )}
                                     </div>
                                 ))}

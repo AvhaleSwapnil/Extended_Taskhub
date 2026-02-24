@@ -59,9 +59,9 @@ export default function Sidebar() {
                         <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
                             <Briefcase size={24} strokeWidth={2.5} />
                         </div>
-                        <div>
-                            <h1 className="font-bold text-xl text-slate-900 leading-none">TaskHub</h1>
-                            <p className="text-xs text-slate-400 font-medium mt-1">Finance Team</p>
+                        <div className="flex flex-col min-w-0">
+                            <h1 className="font-bold text-xl text-slate-900 leading-none truncate">TaskHub</h1>
+                            <p className="text-xs text-slate-400 font-medium mt-1 truncate">Finance Team</p>
                         </div>
                     </div>
                     <button
@@ -73,7 +73,7 @@ export default function Sidebar() {
                 </div>
 
                 {/* Navigation */}
-                <nav className="flex-1 space-y-1 overflow-y-auto">
+                <nav className="flex-1 space-y-1 overflow-y-auto custom-scrollbar pr-2 min-w-0">
                     {menuItems.map((item) => {
                         const isActive = pathname === item.href;
                         const Icon = item.icon;
@@ -84,12 +84,12 @@ export default function Sidebar() {
                                 href={item.href}
                                 onClick={() => setIsSidebarOpen(false)}
                                 className={cn(
-                                    "nav-item",
+                                    "nav-item group",
                                     isActive && "nav-item-active"
                                 )}
                             >
-                                <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
-                                {item.name}
+                                <Icon size={20} strokeWidth={isActive ? 2.5 : 2} className="flex-shrink-0" />
+                                <span className="truncate">{item.name}</span>
                             </Link>
                         );
                     })}
@@ -133,7 +133,7 @@ export default function Sidebar() {
                                         "w-2 h-2 rounded-full opacity-0 transition-opacity",
                                         selectedCompany === company && "opacity-100 bg-primary"
                                     )} />
-                                    {company}
+                                    <span className="truncate">{company}</span>
                                 </button>
                             ))}
                         </div>

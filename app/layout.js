@@ -24,9 +24,9 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="antialiased">
+      <body className="antialiased overflow-x-hidden w-full min-h-screen bg-page-bg">
         <TaskProvider>
-          <div className="flex bg-page-bg min-h-screen relative overflow-x-hidden">
+          <div className="relative min-h-screen">
             <Sidebar />
             <LayoutWrapper>
               {children}

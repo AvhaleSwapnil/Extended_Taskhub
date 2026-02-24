@@ -43,7 +43,7 @@ export default function SettingsPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="max-w-4xl mx-auto space-y-10"
+            className="max-w-4xl mx-auto space-y-6 sm:space-y-10"
         >
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
@@ -81,9 +81,9 @@ export default function SettingsPage() {
                         <div className="h-10 w-10 rounded-xl bg-indigo-50 flex items-center justify-center text-primary">
                             <User size={20} />
                         </div>
-                        <div>
-                            <h3 className="font-extrabold text-slate-800 text-sm uppercase tracking-wider">Profile Information</h3>
-                            <p className="text-xs text-slate-400 font-bold mt-0.5">Update your personal details</p>
+                        <div className="min-w-0">
+                            <h3 className="font-extrabold text-slate-800 text-sm uppercase tracking-wider truncate">Profile Information</h3>
+                            <p className="text-xs text-slate-400 font-bold mt-0.5 truncate">Update your personal details</p>
                         </div>
                     </div>
 
@@ -132,9 +132,9 @@ export default function SettingsPage() {
                         <div className="h-10 w-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600">
                             <Bell size={20} />
                         </div>
-                        <div>
-                            <h3 className="font-extrabold text-slate-800 text-sm uppercase tracking-wider">Notifications</h3>
-                            <p className="text-xs text-slate-400 font-bold mt-0.5">Control how you receive updates</p>
+                        <div className="min-w-0">
+                            <h3 className="font-extrabold text-slate-800 text-sm uppercase tracking-wider truncate">Notifications</h3>
+                            <p className="text-xs text-slate-400 font-bold mt-0.5 truncate">Control how you receive updates</p>
                         </div>
                     </div>
 
@@ -145,9 +145,9 @@ export default function SettingsPage() {
                             { key: 'reminders', label: 'Task Reminders', desc: 'Notify me before a task is due' }
                         ].map((item) => (
                             <div key={item.key} className="flex items-center justify-between p-4 bg-slate-50 border border-slate-50 rounded-2xl hover:bg-white hover:border-slate-100 transition-all group">
-                                <div>
-                                    <h4 className="text-sm font-bold text-slate-800">{item.label}</h4>
-                                    <p className="text-xs text-slate-400 font-medium mt-0.5">{item.desc}</p>
+                                <div className="min-w-0">
+                                    <h4 className="text-sm font-bold text-slate-800 truncate">{item.label}</h4>
+                                    <p className="text-xs text-slate-400 font-medium mt-0.5 truncate">{item.desc}</p>
                                 </div>
                                 <button
                                     onClick={() => setNotifications({ ...notifications, [item.key]: !notifications[item.key] })}
