@@ -50,20 +50,20 @@ export default function Home() {
       className="max-w-6xl mx-auto space-y-10"
     >
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Tasks</h2>
-          <p className="text-slate-500 font-medium mt-1">Manage your finance team tasks</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Tasks</h2>
+          <p className="text-slate-500 font-medium mt-1 text-sm sm:text-base">Manage your finance team tasks</p>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1 }}
-          className="relative group"
+          className="relative group w-full sm:w-auto"
         >
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors" size={18} />
           <input
@@ -71,13 +71,13 @@ export default function Home() {
             placeholder="Search tasks..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-11 pr-6 py-2.5 bg-white border border-slate-200 rounded-xl w-64 focus:ring-2 focus:ring-indigo-100 focus:border-primary outline-none text-slate-600 transition-all shadow-subtle"
+            className="pl-11 pr-6 py-2.5 bg-white border border-slate-200 rounded-xl w-full sm:w-64 focus:ring-2 focus:ring-indigo-100 focus:border-primary outline-none text-slate-600 transition-all shadow-subtle"
           />
         </motion.div>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
         {stats.map((stat, idx) => (
           <motion.div
             key={stat.label}
@@ -86,9 +86,9 @@ export default function Home() {
             transition={{ delay: idx * 0.1 }}
             className="stat-card"
           >
-            <p className="text-slate-400 font-bold text-xs uppercase tracking-wider">{stat.label}</p>
+            <p className="text-slate-400 font-bold text-[10px] uppercase tracking-wider">{stat.label}</p>
             <div className="mt-2 flex items-end justify-between">
-              <span className={`text-4xl font-extrabold ${stat.color}`}>{stat.value}</span>
+              <span className={`text-3xl sm:text-4xl font-extrabold ${stat.color}`}>{stat.value}</span>
               <div className={`h-1.5 w-16 rounded-full ${stat.bg} relative overflow-hidden`}>
                 <motion.div
                   initial={{ width: 0 }}
@@ -103,13 +103,13 @@ export default function Home() {
       </div>
 
       {/* Filters & Actions */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 no-scrollbar flex-nowrap">
           {["All", "Todo", "In Progress", "Completed", "Recurring"].map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`px-4 py-1.5 rounded-lg text-sm font-bold transition-all ${filter === f
+              className={`px-4 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all whitespace-nowrap ${filter === f
                 ? "bg-primary text-white shadow-md shadow-indigo-100"
                 : "bg-white text-slate-500 border border-slate-100 hover:bg-slate-50"
                 }`}
@@ -123,7 +123,7 @@ export default function Home() {
 
         <button
           onClick={() => setIsModalOpen(true)}
-          className="btn-primary flex items-center justify-center gap-2 transform hover:translate-y-[-2px] !py-2 !px-4"
+          className="btn-primary flex items-center justify-center gap-2 transform hover:translate-y-[-2px] !py-2.5 !px-6 w-full sm:w-auto"
         >
           <Plus size={18} strokeWidth={3} />
           New Task
@@ -170,33 +170,33 @@ export default function Home() {
                     {task.title}
                   </h3>
                   <p className="text-slate-500 text-sm mt-0.5 line-clamp-1">{task.description}</p>
-                  <div className="mt-3 flex items-center gap-6">
+                  <div className="mt-3 flex flex-wrap items-center gap-3 sm:gap-6">
                     <div className="flex items-center gap-1.5 text-slate-400">
                       <User size={14} strokeWidth={2.5} />
-                      <span className="text-xs font-bold">{task.owner}</span>
+                      <span className="text-[10px] sm:text-xs font-bold">{task.owner}</span>
                     </div>
                     <div className="flex items-center gap-1.5 text-slate-400">
                       <Clock size={14} strokeWidth={2.5} />
-                      <span className="text-xs font-bold">{task.date}</span>
+                      <span className="text-[10px] sm:text-xs font-bold">{task.date}</span>
                     </div>
-                    <div className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide flex items-center gap-1.5 ${task.priority === 'High' ? 'bg-rose-50 text-rose-600' :
+                    <div className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[9px] sm:text-[10px] font-bold uppercase tracking-wide flex items-center gap-1.5 ${task.priority === 'High' ? 'bg-rose-50 text-rose-600' :
                       task.priority === 'Medium' ? 'bg-amber-50 text-amber-600' : 'bg-emerald-50 text-emerald-600'
                       }`}>
                       <AlertCircle size={10} strokeWidth={3} />
                       {task.priority}
                     </div>
-                    <div className="px-2.5 py-1 bg-slate-100 text-slate-500 rounded-md text-[10px] font-bold uppercase tracking-wide">
+                    <div className="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-slate-100 text-slate-500 rounded-md text-[9px] sm:text-[10px] font-bold uppercase tracking-wide">
                       {task.category}
                     </div>
                     {task.recurrence && task.recurrence !== "One Time" && (
-                      <div className="px-2.5 py-1 bg-indigo-50 text-primary rounded-md text-[10px] font-bold uppercase tracking-wide flex items-center gap-1.5">
+                      <div className="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-indigo-50 text-primary rounded-md text-[9px] sm:text-[10px] font-bold uppercase tracking-wide flex items-center gap-1.5">
                         <Repeat size={10} strokeWidth={3} />
                         {task.recurrence}
                       </div>
                     )}
                     <motion.div
                       layout
-                      className={`text-[11px] font-bold ${task.status === 'In Progress' ? 'text-orange-500' :
+                      className={`text-[10px] sm:text-[11px] font-bold ${task.status === 'In Progress' ? 'text-orange-500' :
                         task.status === 'Completed' ? 'text-emerald-500' : 'text-blue-500'
                         }`}
                     >

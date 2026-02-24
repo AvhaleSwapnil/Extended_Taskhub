@@ -1,11 +1,19 @@
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import TaskModal from "@/components/TaskModal";
+import LayoutWrapper from "@/components/LayoutWrapper";
 import { TaskProvider } from "@/context/TaskContext";
 
 export const metadata = {
   title: "TaskHub | Finance Management",
   description: "Manage your finance team tasks efficiently.",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({ children }) {
@@ -18,11 +26,11 @@ export default function RootLayout({ children }) {
       </head>
       <body className="antialiased">
         <TaskProvider>
-          <div className="flex bg-page-bg min-h-screen">
+          <div className="flex bg-page-bg min-h-screen relative overflow-x-hidden">
             <Sidebar />
-            <main className="flex-1 ml-64 p-10 min-h-screen">
+            <LayoutWrapper>
               {children}
-            </main>
+            </LayoutWrapper>
           </div>
           <TaskModal />
         </TaskProvider>

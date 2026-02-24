@@ -6,7 +6,7 @@
   --color-sidebar: #ffffff;
   --color-page-bg: #f8fafc;
   --color-border-subtle: #f1f5f9;
-  
+
   --shadow-subtle: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
@@ -27,7 +27,7 @@ body {
   .nav-item {
     @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-500 font-medium transition-all hover:bg-indigo-50 hover:text-primary active:scale-95 cursor-pointer;
   }
-  
+
   .nav-item-active {
     @apply bg-indigo-50 text-primary;
   }
@@ -38,5 +38,14 @@ body {
 
   .btn-primary {
     @apply bg-primary text-white px-6 py-2.5 rounded-lg font-semibold transition-all hover:bg-primary-dark active:scale-95 shadow-lg shadow-indigo-200;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

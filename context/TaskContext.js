@@ -55,6 +55,7 @@ export function TaskProvider({ children }) {
     const [tasks, setTasks] = useState(INITIAL_TASKS);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCompany, setSelectedCompany] = useState("All");
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const addTask = (newTask) => {
         setTasks(prev => [{ ...newTask, id: Date.now() }, ...prev]);
@@ -79,7 +80,9 @@ export function TaskProvider({ children }) {
         addTask,
         toggleTaskStatus,
         isModalOpen,
-        setIsModalOpen
+        setIsModalOpen,
+        isSidebarOpen,
+        setIsSidebarOpen
     };
 
     return (

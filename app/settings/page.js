@@ -46,13 +46,13 @@ export default function SettingsPage() {
             className="max-w-4xl mx-auto space-y-10"
         >
             {/* Header */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                 >
-                    <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Settings</h2>
-                    <p className="text-slate-500 font-medium mt-1">Manage your account and preferences</p>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Settings</h2>
+                    <p className="text-slate-500 font-medium mt-1 text-sm sm:text-base">Manage your account and preferences</p>
                 </motion.div>
                 <AnimatePresence>
                     {showSuccess && (
@@ -87,7 +87,7 @@ export default function SettingsPage() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
                         <div className="space-y-2">
                             <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Full Name</label>
                             <input
@@ -109,7 +109,7 @@ export default function SettingsPage() {
                                 />
                             </div>
                         </div>
-                        <div className="space-y-2">
+                        <div className="space-y-2 sm:col-span-2 lg:col-span-1">
                             <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Current Role</label>
                             <input
                                 type="text"

@@ -66,20 +66,20 @@ export default function TeamPage() {
             className="max-w-6xl mx-auto space-y-10"
         >
             {/* Header */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 }}
                 >
-                    <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Team</h2>
-                    <p className="text-slate-500 font-medium mt-1">Finance team members and their tasks</p>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Team</h2>
+                    <p className="text-slate-500 font-medium mt-1 text-sm sm:text-base">Finance team members and their tasks</p>
                 </motion.div>
                 <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="relative group"
+                    className="relative group w-full sm:w-auto"
                 >
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors" size={18} />
                     <input
@@ -87,13 +87,13 @@ export default function TeamPage() {
                         placeholder="Search members..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="pl-11 pr-6 py-2.5 bg-white border border-slate-200 rounded-xl w-64 focus:ring-2 focus:ring-indigo-100 focus:border-primary outline-none text-slate-600 transition-all shadow-subtle"
+                        className="pl-11 pr-6 py-2.5 bg-white border border-slate-200 rounded-xl w-full sm:w-64 focus:ring-2 focus:ring-indigo-100 focus:border-primary outline-none text-slate-600 transition-all shadow-subtle"
                     />
                 </motion.div>
             </div>
 
             {/* Team Grid */}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <AnimatePresence mode="popLayout">
                     {filteredMembers.map((member, idx) => (
                         <motion.div

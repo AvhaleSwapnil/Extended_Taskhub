@@ -89,17 +89,17 @@ export default function CalendarPage() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
             >
-                <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Calendar</h2>
-                <p className="text-slate-500 font-medium mt-1">View tasks by due date</p>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Calendar</h2>
+                <p className="text-slate-500 font-medium mt-1 text-sm sm:text-base">View tasks by due date</p>
             </motion.div>
 
-            <div className="grid grid-cols-12 gap-8">
+            <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8">
                 {/* Main Calendar */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="col-span-8 stat-card !p-8"
+                    className="lg:col-span-8 stat-card !p-4 sm:!p-8"
                 >
                     <div className="flex items-center justify-between mb-10">
                         <AnimatePresence mode="wait">
@@ -158,7 +158,7 @@ export default function CalendarPage() {
                                         <motion.div
                                             whileHover={{ scale: 1.1 }}
                                             className={`
-                        mx-auto h-12 w-12 flex items-center justify-center rounded-xl text-sm font-bold transition-all
+                        mx-auto h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center rounded-xl text-sm font-bold transition-all
                         ${date.isToday ? 'bg-primary text-white shadow-lg shadow-indigo-100 scale-110' :
                                                     date.isCurrentMonth ? 'text-slate-700 hover:bg-indigo-50 hover:text-primary' : 'text-slate-300'}
                       `}
@@ -166,7 +166,7 @@ export default function CalendarPage() {
                                             {date.day}
                                         </motion.div>
                                         {date.hasEvent && !date.isToday && (
-                                            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full group-hover:scale-150 transition-transform"></div>
+                                            <div className="absolute bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full group-hover:scale-150 transition-transform"></div>
                                         )}
                                     </div>
                                 ))}
@@ -176,7 +176,7 @@ export default function CalendarPage() {
                 </motion.div>
 
                 {/* Sidebar */}
-                <div className="col-span-4 space-y-6">
+                <div className="lg:col-span-4 space-y-6">
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
